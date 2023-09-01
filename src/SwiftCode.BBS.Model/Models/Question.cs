@@ -1,17 +1,18 @@
 ﻿using SwiftCode.BBS.Model.Models.RootTkey;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SwiftCode.BBS.Model.Models;
 
-public class Article : RootEntityTkey<int>
+public class Question : RootEntityTkey<int>
 {
     /// <summary>
     /// 标题
     /// </summary>
     public string Title { get; set; }
-    /// <summary>
-    /// 封面
-    /// </summary>
-    public string Cover { get; set; }
     /// <summary>
     /// 内容
     /// </summary>
@@ -36,13 +37,10 @@ public class Article : RootEntityTkey<int>
     /// 创建用户
     /// </summary>
     public virtual UserInfo CreateUser { get; set; }
+
     /// <summary>
-    /// 收藏文章的用户
+    /// 问答评论
     /// </summary>
-    public virtual ICollection<UserCollectionArticle> CollectionArticles { get; set; } = new List<UserCollectionArticle>();
-    /// <summary>
-    /// 文章评论
-    /// </summary>
-    public virtual ICollection<ArticleComment> ArticleComments { get; set; } = new List<ArticleComment>();
+    public virtual ICollection<QuestionComment> QuestionComments { get; set; }
 
 }

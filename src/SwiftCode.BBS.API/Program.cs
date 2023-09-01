@@ -1,9 +1,12 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Filters;
-using SwiftCode.BBS.Repositories.EfContext;
+using SwiftCode.BBS.EntityFramework.EfContext;
+using SwiftCode.BBS.Extensions.ServiceExtensions;
 using SwiftCode.BSS.Common.Helper;
 using System.Text;
 
@@ -80,6 +83,12 @@ builder.Services.AddAuthentication(x =>
 
 builder.Services.AddDbContext<SwiftCodeBbsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServer")));
+
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory(containerbuilder=>
+{
+    containerbuilder.RegisterModule<AutofacModuleRegister>();
+}));
 
 var app = builder.Build();
 

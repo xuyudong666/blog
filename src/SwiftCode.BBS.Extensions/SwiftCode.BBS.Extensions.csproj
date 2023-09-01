@@ -4,22 +4,17 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <BaseOutputPath>..\SwiftCode.BBS.API\bin\</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="bin\**" />
-    <EmbeddedResource Remove="bin\**" />
-    <None Remove="bin\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.4" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SwiftCode.BBS.EntityFramework\SwiftCode.BBS.EntityFramework.csproj" />
     <ProjectReference Include="..\SwiftCode.BBS.IRepositories\SwiftCode.BBS.IRepositories.csproj" />
+    <ProjectReference Include="..\SwiftCode.BBS.IServices\SwiftCode.BBS.IServices.csproj" />
   </ItemGroup>
 
 </Project>

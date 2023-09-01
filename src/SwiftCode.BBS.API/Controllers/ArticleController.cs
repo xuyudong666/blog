@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SwiftCode.BBS.IServices;
 using SwiftCode.BBS.Model.Models;
-using SwiftCode.BBS.Services;
 
 namespace SwiftCode.BBS.API.Controllers
 {
@@ -10,12 +9,17 @@ namespace SwiftCode.BBS.API.Controllers
     [ApiController]
     public class ArticleController : ControllerBase
     {
+        private readonly IArticleService _articleService;
 
-        [HttpGet("{id}",Name ="Get")]
-        public List<Article> Get(int id)
+        public ArticleController(IArticleService articleService)
         {
-            IArticleService articleService = new ArticleService();
-            return articleService.GetAll(d=>d.Id == id);
+            _articleService = articleService;
+        }
+
+        [HttpGet("{id}", Name = "Get")]
+        public async Task<List<Article>> Get(int id)
+        {
+            return await _articleService.GetListAsync(d => d.Id == id);
         }
     }
 }

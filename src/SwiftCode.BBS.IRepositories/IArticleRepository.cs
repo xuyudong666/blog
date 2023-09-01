@@ -1,4 +1,5 @@
-﻿using SwiftCode.BBS.Model.Models;
+﻿using SwiftCode.BBS.IRepositories.Base;
+using SwiftCode.BBS.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,6 @@ using System.Threading.Tasks;
 
 namespace SwiftCode.BBS.IRepositories;
 
-public interface IArticleRepository
+public interface IArticleRepository : IBaseRepository<Article>
 {
-    void Add(Article model);
-    void Delete(Article model);
-    void Update(Article model); 
-    List<Article> GetAll(Expression<Func<Article,bool>> whereExpression);
 }

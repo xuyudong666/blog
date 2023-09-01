@@ -20,9 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SwiftCode.BBS.IServices\SwiftCode.BBS.IServices.csproj" />
+    <ProjectReference Include="..\SwiftCode.BBS.Extensions\SwiftCode.BBS.Extensions.csproj" />
     <ProjectReference Include="..\SwiftCode.BBS.Repositories\SwiftCode.BBS.Repositories.csproj" />
-    <ProjectReference Include="..\SwiftCode.BBS.Services\SwiftCode.BBS.Services.csproj" />
     <ProjectReference Include="..\SwiftCode.BSS.Common\SwiftCode.BSS.Common.csproj" />
   </ItemGroup>
 

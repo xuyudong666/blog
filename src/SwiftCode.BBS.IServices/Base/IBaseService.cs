@@ -5,20 +5,20 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SwiftCode.BBS.IRepositories.Base;
+namespace SwiftCode.BBS.IServices.Base;
 
-public interface IBaseRepository<TEntity> where TEntity : class
+public interface IBaseService<TEntity> where TEntity : class
 {
-    Task<TEntity> InsertAsync(TEntity entity,bool autoSave = false,CancellationToken token = default);
+    Task<TEntity> InsertAsync(TEntity entity, bool autoSave = false, CancellationToken token = default);
     Task InsertManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken token = default);
 
-    Task<TEntity> UpdateAsync(TEntity entity,bool autoSave = false,CancellationToken cancellationToken = default);
+    Task<TEntity> UpdateAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default);
 
-    Task UpdateManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken token = default);
+    Task<TEntity> UpdateManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken token = default);
 
-    Task DeleteAsync(TEntity entity,bool autoSave = false,CancellationToken cancellationToken= default);
+    Task DeleteAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default);
 
-    Task DeleteAsync(Expression<Func<TEntity,bool>> predicate, bool autoSave = false, CancellationToken cancellationToken = default);
+    Task DeleteAsync(Expression<Func<TEntity, bool>> predicate, bool autoSave = false, CancellationToken cancellationToken = default);
 
     Task DeleteManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken cancellationToken = default);
 
@@ -30,10 +30,9 @@ public interface IBaseRepository<TEntity> where TEntity : class
 
     Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
-    Task<List<TEntity>> GetPagedListAsync(int skipCount,int maxResultCount,string sorting,CancellationToken cancellationToken = default);
+    Task<List<TEntity>> GetPagedListAsync(int skipCount, int maxResultCount, string sorting, CancellationToken cancellationToken = default);
 
     Task<long> GetCountAsync(CancellationToken cancellationToken = default);
 
     Task<long> GetCountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
-
 }

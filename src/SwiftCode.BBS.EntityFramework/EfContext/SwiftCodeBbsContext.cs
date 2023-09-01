@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SwiftCode.BBS.Repositories.EfContext;
+namespace SwiftCode.BBS.EntityFramework.EfContext;
 
 public class SwiftCodeBbsContext : DbContext
 {

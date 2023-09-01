@@ -1,4 +1,5 @@
-﻿using SwiftCode.BBS.Model.Models;
+﻿using SwiftCode.BBS.IServices.Base;
+using SwiftCode.BBS.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,6 @@ using System.Threading.Tasks;
 
 namespace SwiftCode.BBS.IServices;
 
-public interface IArticleService
+public interface IArticleService : IBaseService<Article>
 {
-    void Add(Article model);
-    void Delete(Article model);
-    void Update(Article model);
-    List<Article> GetAll(Expression<Func<Article, bool>> whereExpression);
 }
