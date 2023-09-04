@@ -11,4 +11,7 @@ namespace SwiftCode.BBS.IRepositories;
 
 public interface IArticleRepository : IBaseRepository<Article>
 {
+    Task<Article> GetByIdAsync(int id, CancellationToken cancellationToken = default);
+
+    Task<Article> GetCollectionArticlesByIdAsync(int id, CancellationToken cancellationToken = default);
 }

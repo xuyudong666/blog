@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace SwiftCode.BBS.Services.Base;
 
-public class BaseService<TEntity> :  IBaseService<TEntity> where TEntity : class
+public class BaseServices<TEntity> :  IBaseServices<TEntity> where TEntity : class
 {
     private readonly IBaseRepository<TEntity> _baseRepository;
-    public BaseService(IBaseRepository<TEntity> baseRepository)
+    public BaseServices(IBaseRepository<TEntity> baseRepository)
     {
         _baseRepository = baseRepository;
     }

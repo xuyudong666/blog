@@ -1,6 +1,10 @@
 ﻿using Autofac;
 using SwiftCode.BBS.IRepositories;
+using SwiftCode.BBS.IRepositories.Base;
 using SwiftCode.BBS.IServices;
+using SwiftCode.BBS.IServices.Base;
+using SwiftCode.BBS.Repositories.Base;
+using SwiftCode.BBS.Services.Base;
 using System.Reflection;
 
 namespace SwiftCode.BBS.Extensions.ServiceExtensions;
@@ -14,6 +18,10 @@ public class AutofacModuleRegister : Autofac.Module
 
         //var assemblysRepositories = Assembly.Load("SwiftCode.BBS.Repositories");
         //builder.RegisterAssemblyTypes(assemblysRepositories).AsImplementedInterfaces();
+
+        builder.RegisterGeneric(typeof(BaseRepository<>)).As(typeof(IBaseRepository<>)).InstancePerDependency();
+        builder.RegisterGeneric(typeof(BaseServices<>)).As(typeof(IBaseServices<>)).InstancePerDependency();
+
 
         var basePath = AppContext.BaseDirectory;
 

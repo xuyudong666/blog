@@ -82,8 +82,7 @@ builder.Services.AddAuthentication(x =>
     });
 
 builder.Services.AddDbContext<SwiftCodeBbsContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServer")));
-
+    options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("SQLServer")));
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory(containerbuilder=>
 {

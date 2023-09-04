@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SwiftCode.BBS.IServices.Base;
 
-public interface IBaseService<TEntity> where TEntity : class
+public interface IBaseServices<TEntity> where TEntity : class
 {
     Task<TEntity> InsertAsync(TEntity entity, bool autoSave = false, CancellationToken token = default);
     Task InsertManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken token = default);
