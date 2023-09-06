@@ -47,13 +47,11 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddSingleton(new Appsettings(builder.Configuration));
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Client", policy => policy.RequireRole("Client").Build());
-    options.AddPolicy("Admin", policy => policy.RequireRole("Admin").Build());
-    options.AddPolicy("SystemOrAdmin", policy => policy.RequireRole("Admin", "System"));
-    options.AddPolicy("SystemAndAdmin", policy => policy.RequireRole("Admin").RequireRole("System"));
-});
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("Client", policy => policy.RequireRole("Client").Build())
+    .AddPolicy("Admin", policy => policy.RequireRole("Admin").Build())
+    .AddPolicy("SystemOrAdmin", policy => policy.RequireRole("Admin", "System"))
+    .AddPolicy("SystemAndAdmin", policy => policy.RequireRole("Admin").RequireRole("System"));
 
 builder.Services.AddAuthentication(x =>
 {
@@ -89,6 +87,8 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory(contain
     containerbuilder.RegisterModule<AutofacModuleRegister>();
 }));
 
+builder.Services.AddAutoMapperSetup();
+builder.Services.AddMemoryCacheSetup();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

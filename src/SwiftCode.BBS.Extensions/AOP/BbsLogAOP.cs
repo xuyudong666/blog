@@ -30,5 +30,8 @@ public class BbsLogAOP : IInterceptor
 			Directory.CreateDirectory(path);
 		}
 
+		string fileName = path + $@"\InterceptLog-{DateTime.Now:yyyyMMddHHmmss}.log";
+		StreamWriter sw = File.AppendText(fileName);
+		sw.Close();
     }
 }

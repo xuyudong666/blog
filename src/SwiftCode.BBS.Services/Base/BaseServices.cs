@@ -10,51 +10,63 @@ using System.Threading.Tasks;
 
 namespace SwiftCode.BBS.Services.Base;
 
-public class BaseServices<TEntity> :  IBaseServices<TEntity> where TEntity : class
+public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : class, new()
 {
-    private readonly IBaseRepository<TEntity> _baseRepository;
+    public IBaseRepository<TEntity> _baseRepository;
+
     public BaseServices(IBaseRepository<TEntity> baseRepository)
     {
         _baseRepository = baseRepository;
     }
-    public Task DeleteAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
+
+    public async Task<TEntity> InsertAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await _baseRepository.InsertAsync(entity, autoSave, cancellationToken);
     }
 
-    public Task DeleteAsync(Expression<Func<TEntity, bool>> predicate, bool autoSave = false, CancellationToken cancellationToken = default)
+    public async Task InsertManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await _baseRepository.InsertManyAsync(entities, autoSave, cancellationToken);
     }
 
-    public Task DeleteManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken cancellationToken = default)
+    public async Task<TEntity> UpdateAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await _baseRepository.UpdateAsync(entity, autoSave, cancellationToken);
     }
 
-    public Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
+    public async Task UpdateManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await _baseRepository.UpdateManyAsync(entities, autoSave, cancellationToken);
     }
 
-    public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
+    public async Task DeleteAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await _baseRepository.DeleteAsync(entity, autoSave, cancellationToken);
     }
 
-    public Task<long> GetCountAsync(CancellationToken cancellationToken = default)
+    public async Task DeleteAsync(Expression<Func<TEntity, bool>> predicate, bool autoSave = false, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await _baseRepository.DeleteAsync(predicate, autoSave, cancellationToken);
     }
 
-    public Task<long> GetCountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
+    public async Task DeleteManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await _baseRepository.DeleteManyAsync(entities, autoSave, cancellationToken);
     }
 
-    public Task<List<TEntity>> GetListAsync(CancellationToken cancellationToken = default)
+    public async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await _baseRepository.FindAsync(predicate, cancellationToken);
+    }
+
+    public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
+    {
+        return await _baseRepository.GetAsync(predicate, cancellationToken);
+    }
+
+    public async Task<List<TEntity>> GetListAsync(CancellationToken cancellationToken = default)
+    {
+        return await _baseRepository.GetListAsync(cancellationToken);
     }
 
     public async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
@@ -62,28 +74,17 @@ public class BaseServices<TEntity> :  IBaseServices<TEntity> where TEntity : cla
         return await _baseRepository.GetListAsync(predicate, cancellationToken);
     }
 
-    public Task<List<TEntity>> GetPagedListAsync(int skipCount, int maxResultCount, string sorting, CancellationToken cancellationToken = default)
+    public async Task<List<TEntity>> GetPagedListAsync(int skipCount, int maxResultCount, string sorting,
+        CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await _baseRepository.GetPagedListAsync(skipCount, maxResultCount, sorting, cancellationToken);
     }
-
-    public Task<TEntity> InsertAsync(TEntity entity, bool autoSave = false, CancellationToken token = default)
+    public async Task<long> GetCountAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return await _baseRepository.GetCountAsync(predicate, cancellationToken);
     }
-
-    public Task InsertManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken token = default)
+    public async Task<long> GetCountAsync(CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<TEntity> UpdateAsync(TEntity entity, bool autoSave = false, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<TEntity> UpdateManyAsync(IEnumerable<TEntity> entities, bool autoSave = false, CancellationToken token = default)
-    {
-        throw new NotImplementedException();
+        return await _baseRepository.GetCountAsync(cancellationToken);
     }
 }
